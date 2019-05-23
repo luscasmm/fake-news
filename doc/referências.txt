@@ -1,0 +1,5 @@
+Leitura de arquivos
+https://www.devmedia.com.br/lendo-dados-de-txt-com-java/23221
+
+Leitura de arquivo CSV
+https://pt.stackoverflow.com/questions/27013/como-ler-arquivos-csv-em-java
