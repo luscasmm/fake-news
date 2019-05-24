@@ -15,25 +15,7 @@ import java.util.ArrayList;
  */
 
 public class CSV {
-	
-//	public LeitorCSV(String caminho) {
-//		try { // Tenta abrir o arquivo localizado em caminho
-//			
-//			csv = new BufferedReader(new FileReader(caminho)); // Instancia o objeto de leitura de arquivos
-//			
-//			
-//			lerLinha(); // Ler o cabeçalho
-//			
-//		} catch (FileNotFoundException e) { // Captura exceção caso o arquivo não exista
-//			
-//			e.printStackTrace();
-//			
-//		} catch (IOException e) {
-//	
-//			e.printStackTrace();
-//		}
-//	}
-	
+		
 	// Abre, lê e formata um arquivo CSV
 	public static ArrayList<String[]> ler(String caminho, String separador){
 		
@@ -61,7 +43,7 @@ public class CSV {
 			
 	        e.printStackTrace();
 	        
-	    } finally {
+	    } finally { // Encerra o objeto BufferdReader
 	    	
 	        if (csv != null) {
 	            try {
@@ -77,51 +59,16 @@ public class CSV {
 		
 	}
 	
+	// Testando a classe	
 	public static void main(String args[]) {
 		ArrayList<String[]> dataSet = CSV.ler("data/boatos.csv", ",");
 		
 		for(String[] linha : dataSet) {
-			for(String subString : linha) {
-				System.out.print(subString + " ");
-			}
-			System.out.print("\n");
+//			for(String subString : linha) {
+//				System.out.print(subString + " ");
+//			}
+			System.out.print(linha[0] + linha[1] + "\n");
 		}
 	}
-	
-//	public String lerLinha() throws IOException {
-//		String linha = null;
-//		
-//		try {
-//			linha = csv.readLine();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		
-//		if(linha == null) csv.close();
-//		
-//		return linha;
-//	}
-//	
-//	public static void main(String[] args) {
-//		LeitorCSV leitor = new LeitorCSV("data/boatos.csv");
-//		
-//		try {
-//			String linha = leitor.lerLinha();
-//			int i = 0;
-//			
-//			while(linha != null) {
-//				System.out.println(i + " :" + linha);
-//				linha = leitor.lerLinha();
-//				i++;
-//			}
-//			
-//			System.out.println(linha);
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		
-//		
-//	
-//	}
 
 }
