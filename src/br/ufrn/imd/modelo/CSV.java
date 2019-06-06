@@ -17,13 +17,14 @@ import java.util.ArrayList;
 public class CSV {
 			
 	// Abre, lê e formata um arquivo CSV
-	public static ArrayList<ArrayList<String>> ler(String caminho, String separador){
-		ArrayList<ArrayList<String>> conteudo = new ArrayList<ArrayList<String>>();
-		ArrayList<String> tokens = new ArrayList<String>();
+	public static ArrayList<String[]> ler(String caminho, String separador){
+		
+		ArrayList<String[]> conteudo = new ArrayList<String[]>();
+		String[] tokens = null;
 		String token = null;
 		String[] split = null; 
 		BufferedReader csv = null;
-		
+
 		try { // Tenta abrir, ler e formatar o arquivo CSV
 			
 			csv = new BufferedReader(new FileReader(caminho)); // Instancia o objeto de leitura de arquivos
@@ -31,6 +32,8 @@ public class CSV {
 			String linha = csv.readLine(); // Lê o cabeçalho
 			
 			while((linha = csv.readLine()) != null) { // Lê o resto do conteúdo
+				
+				tokens = new String[4];
 
 				linha = linha.toLowerCase(); // Deixa tudo em minúsculo
 				split = linha.split(separador, 2); // Divide a string em duas partes
@@ -43,15 +46,18 @@ public class CSV {
 					token = null;
 				}
 				
-				tokens.add(token); // Adciona o id à lista de tokens da linha
+				tokens[0] = token; // Adciona o id à lista de tokens
 						
 				split = linha.split("\""+ separador); // Divide a linha entre separadores depois de aspas
 				token = split[0]; // Pega texto da linha
-				tokens.add(token);
+				
+				tokens[1] = token; // Adciona o texto à lista de tokens
 				
 				try { // Verifica se linha possui mais informações além do texto
 					linha = split[1]; // Remove o texto da linha
 				} catch (ArrayIndexOutOfBoundsException e) { // Caso não possua, pula a linha
+					tokens[2] = null;
+					tokens[3] = null;
 					conteudo.add(tokens);
 					continue;
 				}
@@ -59,22 +65,22 @@ public class CSV {
 				split = linha.split(separador); // Divide linha entre os separadores
 				
 				token = split[0];	// Pega o link	
-				tokens.add(token);
+				
+				tokens[2] = token; // Adciona o link à lista de tokens
 				
 				try { // Verifica se linha possui mais informações além do link
 					token = split[1]; // Pega o timestamp
 				} catch (ArrayIndexOutOfBoundsException e) { // Caso não possua, pula a linha
+					tokens[3] = null;
 					conteudo.add(tokens);
 					continue;
 				}
 				
-				tokens.add(token);
-				conteudo.add(tokens);
+				tokens[2] = token; // Adciona o timestamp à lista de tokens
+				conteudo.add(tokens);	
 				
-				tokens.clear();
 			}
 			
-			return conteudo;
 			
 		} catch (FileNotFoundException e) {
 			
@@ -85,7 +91,7 @@ public class CSV {
 	        e.printStackTrace();
 	        
 	    } finally { // Encerra o objeto BufferdReader
-	    	
+
 	        if (csv != null) {
 	            try {
 	                csv.close();
@@ -96,14 +102,7 @@ public class CSV {
 	        }
 	    }
 		
-		return null;
-		
-	}
-	
-	// Testando a classe	
-	public static void main(String args[]) {
-		ArrayList<ArrayList<String>> dataSet = CSV.ler("data/boatos.csv", ",");
-//		System.out.println(dataSet);
+		return conteudo;
 		
 	}
 
