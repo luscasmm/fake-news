@@ -3,3 +3,6 @@ https://www.devmedia.com.br/lendo-dados-de-txt-com-java/23221
 
 Leitura de arquivo CSV
 https://pt.stackoverflow.com/questions/27013/como-ler-arquivos-csv-em-java
+
+TreeSet
+https://www.devmedia.com.br/diferencas-entre-treeset-hashset-e-linkedhashset-em-java/29077

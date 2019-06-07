@@ -1,6 +1,7 @@
 package br.ufrn.imd.modelo;
 
-import java.util.ArrayList;
+import java.text.Normalizer;
+import java.util.TreeSet;
 
 /*
  * Esta classe representa uma notícia.
@@ -16,27 +17,60 @@ public class Noticia {
 	private String link;
 	private String timestamp;
 	
-	static int limiar = 3; // Define o limiar para desconsiderar palavras
+	static int LIMIAR = 3; // Define o limiar para desconsiderar palavras
 	
 	public Noticia(String id, String conteudo, String link, String timestamp) {
+		
 		this.id = id;
 		this.conteudo = conteudo;
 		this.link = link;
 		this.timestamp = timestamp;
 		
 		
-		String[] tokens = this.conteudo.split(" ");
-		this.conteudo = "";
+		// Tratamento do conteúdo da notícia
 		
-		for(String palavra : tokens) {
-			if(palavra.length() > limiar) {
-				if(this.conteudo != "") {
-					this.conteudo += " ";
-				}
-				this.conteudo += palavra;
+		this.conteudo = this.conteudo.toLowerCase(); // Deixa tudo em minúsculo
+		
+		this.conteudo = normalizar(this.conteudo); // Remove acentos e caracteres não alfanuméricos
+		
+		String[] tokens = this.conteudo.split(" "); // Divide texto entre espaços em branco
+		
+		this.conteudo = filtrar(tokens); // Ordena removendo palavras repetidas e de tamanho inferior ao limiar
+		
+	}
+	
+	// Remove acentos e caracteres não alfanúmericos da string passada	
+	public String normalizar(String str) {
+		
+		str = Normalizer.normalize(str, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", ""); // Remove acentos
+		str = str.replaceAll("[^a-z0-9\\s]", " "); // Remove caracteres não alfanuméricos
+		str = str.replaceAll("\\s+", " "); // Remove espaços em branco extra
+		return str;
+		
+	}
+	
+	// Remove palavras com tamanho menor que o limiar e repetições
+	public String filtrar(String[] palavras) {
+		
+		TreeSet<String> set = new TreeSet<String>(); // Ávora rubro-negra auxiliar
+		String str = "";	
+		
+		// Percorre palavra por palavra
+		for(String palavra : palavras) {
+			if(palavra.length() > LIMIAR) { // Filtra pelo Limiar
+				set.add(palavra); // Evita repetições e ordena as palavras
 			}	
 		}
+		
+		// Passa o conjunto de palavras para string
+		for(String palavra : set) {
+			str += palavra + " ";
+		}
+		
+		return str;
+		
 	}
+
 	
 	// Getters
 	
@@ -73,20 +107,5 @@ public class Noticia {
 	void setTimestamp(String timestamp) {
 		this.timestamp = timestamp;
 	}
-	
-	// Testando a classe	
-	public static void main(String args[]) {
-		ArrayList<String[]> dataset = CSV.ler("data/boatos.csv", ",");
-		ArrayList<Noticia> noticias = new ArrayList<Noticia>();
 		
-		for(String[] linha : dataset) {
-			noticias.add(new Noticia(linha[0], linha[1], linha[2], linha[3]));
-		}
-		
-		for(Noticia n: noticias) {
-			System.out.println("ID: " + n.getId() + " Conteúdo: " + n.getConteudo());
-		}
-	}
-	
-	
 }

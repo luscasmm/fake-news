@@ -35,7 +35,6 @@ public class CSV {
 				
 				tokens = new String[4];
 
-				linha = linha.toLowerCase(); // Deixa tudo em minúsculo
 				split = linha.split(separador, 2); // Divide a string em duas partes
 				token = split[0]; // Pega o id
 				
@@ -90,7 +89,7 @@ public class CSV {
 			
 	        e.printStackTrace();
 	        
-	    } finally { // Encerra o objeto BufferdReader
+	    } finally { // Encerra o objeto BufferedReader
 
 	        if (csv != null) {
 	            try {
