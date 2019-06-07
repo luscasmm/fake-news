@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * CSV 
  * 
  * Esta classe implementa os métodos necessários
- * à abertura e leitura de um arquivo CSV
+ * à abertura e leitura do arquivo CSV disponibilizado
  * 
  */
 
