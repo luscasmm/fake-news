@@ -1,6 +1,7 @@
 package br.ufrn.imd.modelo;
 
 import java.text.Normalizer;
+import java.util.ArrayList;
 import java.util.TreeSet;
 
 /*
@@ -13,29 +14,35 @@ import java.util.TreeSet;
  */
 public class Noticia {
 	private String id;
-	private String conteudo;
+	private String original;
+	private String processado;
 	private String link;
 	private String timestamp;
 	
 	static int LIMIAR = 3; // Define o limiar para desconsiderar palavras
 	
-	public Noticia(String id, String conteudo, String link, String timestamp) {
+	public Noticia(String id, String original, String link, String timestamp) {
 		
 		this.id = id;
-		this.conteudo = conteudo;
 		this.link = link;
 		this.timestamp = timestamp;
+		this.original = original;
+		this.processado = processar(original); 
 		
+	}
+	
+	// Processa o texto original da notícia
+	public String processar(String str) {
 		
-		// Tratamento do conteúdo da notícia
+		str = str.toLowerCase(); // Deixa tudo em minúsculo
 		
-		this.conteudo = this.conteudo.toLowerCase(); // Deixa tudo em minúsculo
+		str = normalizar(str); // Remove acentos e caracteres não alfanuméricos
 		
-		this.conteudo = normalizar(this.conteudo); // Remove acentos e caracteres não alfanuméricos
+		String[] tokens = str.split(" "); // Divide texto entre espaços em branco
 		
-		String[] tokens = this.conteudo.split(" "); // Divide texto entre espaços em branco
+		str = filtrar(tokens); // Ordena removendo palavras repetidas e de tamanho inferior ao limiar
 		
-		this.conteudo = filtrar(tokens); // Ordena removendo palavras repetidas e de tamanho inferior ao limiar
+		return str;
 		
 	}
 	
@@ -74,37 +81,45 @@ public class Noticia {
 	
 	// Getters
 	
-	String getId() {
+	public String getId() {
 		return this.id;
 	}
 	
-	String getConteudo() {
-		return this.conteudo;
+	public String getOriginal() {
+		return this.original;
 	}
 	
-	String getLink() {
+	public String getProcessado() {
+		return this.processado;
+	}
+	
+	public String getLink() {
 		return this.link;
 	}
 	
-	String getTimestamp() {
+	public String getTimestamp() {
 		return this.timestamp;
 	}
 	
 	// Setters
 	
-	void setId(String id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	
-	void setConteudo(String conteudo) {
-		this.conteudo = conteudo;
+	public void setOriginal(String original) {
+		this.original = original;
 	}
 	
-	void setLink(String link) {
+	public void setProcessado(String processado) {
+		this.processado = processado;
+	}
+	
+	public void setLink(String link) {
 		this.link = link;
 	}
 	
-	void setTimestamp(String timestamp) {
+	public void setTimestamp(String timestamp) {
 		this.timestamp = timestamp;
 	}
 		
