@@ -47,6 +47,13 @@ public class Armazenamento {
 		
 	}
 	
+	public void adicionar(String manchete, String link, String data) {
+		String processado = Processador.processar(manchete); // Executa o pre-processamento da noticia
+		String chave = Processador.hash(processado); // Criptografa para conseguir a chave
+		
+		this.jornal.adicionar(chave, new Noticia(null, manchete, processado, link, data));
+	}
+	
 	// Getters
 	
 	public String getDataset() {

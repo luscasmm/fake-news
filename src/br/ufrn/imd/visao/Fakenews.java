@@ -1,7 +1,9 @@
 package br.ufrn.imd.visao;
 
+import java.util.HashMap;
+
 // TODO: Criar classe no pacote dominio que manipule a webscrapper
-// Será necessario um metdo render que transforme em noticia o resultado da cole
+// Será necessario um metdo render que transforme em noticia o resultado da coleta
 // Melhorar "interface"
 // Implementar o algoritmo de similaridade
 
@@ -10,6 +12,7 @@ import java.util.Scanner;
 
 import br.ufrn.imd.dominio.Armazenamento;
 import br.ufrn.imd.modelo.Noticia;
+import br.ufrn.imd.modelo.Processador;
 import br.ufrn.imd.modelo.WebScraper;
 
 public class Fakenews {
@@ -51,13 +54,37 @@ public class Fakenews {
 		
 		armazenamento.carregar(); // Carrega os dados do dataset
 		
-		System.out.print("Informe o link da notícia: ");
+		boolean sair = false;
 		
-		String[] coleta =  WebScraper.coletar(scanner.nextLine());
+		do {
+			
+			
+			System.out.print("\nInforme o link da notícia: ");
+			String url = scanner.next();
+			
+			HashMap<String, String> coleta =  WebScraper.coletar(url);
+			String hash = Processador.hash(coleta.get("manchete"));
+			
+			// Verifica se notícia já consta no sistema
+			if(armazenamento.getJornal().noticia(hash) == null) {
+				
+//				armazenamento.adicionar(coleta.get("manchete"), url, coleta.get("data"));
+				
+			} else {
+				
+				System.out.println("Notícia falsa");
+				
+			}
+			
+			System.out.print("\n1. Verficar outra notícia \n2. Sair\n\nOpção: ");
+			
+			if(scanner.nextInt() == 2) sair = true;
+			
+			
+		}while(sair != true);
 		
-		for(String resultado : coleta) {
-			System.out.print(resultado + " ");
-		}
+	
+		
 		
 //		if(armazenamento.getJornal().noticia())
 //		

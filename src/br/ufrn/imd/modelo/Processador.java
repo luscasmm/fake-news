@@ -52,7 +52,7 @@ public class Processador {
 				set.add(palavra); // Evita repetições e ordena as palavras
 			}	
 		}
-		
+			
 		// Passa o conjunto de palavras para string
 		for(String palavra : set) {
 			str += palavra + " ";
