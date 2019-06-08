@@ -16,3 +16,6 @@ http://delivery.acm.org/10.1145/3140000/3137600/p22-shu.pdf?ip=177.20.152.3&id=3
 https://dl.acm.org/citation.cfm?id=3137600
 
 07/06
+
+Hash function  MessageDigest Class
+https://www.geeksforgeeks.org/sha-1-hash-in-java/

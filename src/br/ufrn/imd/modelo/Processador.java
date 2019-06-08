@@ -1,11 +1,14 @@
 package br.ufrn.imd.modelo;
 
+import java.security.MessageDigest;
+import java.math.BigInteger;
+import java.security.NoSuchAlgorithmException; 
 import java.text.Normalizer;
 import java.util.TreeSet;
 
 /* 
  * Esta classe implementa as rotinas
- * de pre-processamento de uma notícia.
+ * de pre-processamento e de criptografia de uma notícia.
  */
 
 public class Processador {
@@ -57,5 +60,31 @@ public class Processador {
 		
 		return str;
 		
+	}
+	
+	public static String hash(String str) {
+		try {
+			// Instancia o "hasher" sob algoritmo SHA-1
+			MessageDigest md = MessageDigest.getInstance("SHA-1");
+			
+			// Criptografa a string passada
+			byte[] bytes = md.digest(str.getBytes());
+			
+			// Converte de byte para BigInteger
+			BigInteger bi = new BigInteger(1, bytes); 
+			
+			// Converte a criptografia para hexadecimal
+			str = bi.toString(16);
+			
+			// Caso a chave não seja de 40 dígitos, adciona 0s as esquerda
+			while (str.length() < 32) { 
+                str = "0" + str; 
+            } 
+			
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		 
+		return str;
 	}
 }
