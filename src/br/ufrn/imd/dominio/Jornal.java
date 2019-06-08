@@ -24,7 +24,6 @@ public class Jornal {
 		this.noticias = noticias;
 	}
 	
-	
 	// Adiciona a noticia passada ao mapa
 	public void adicionar(String chave, Noticia noticia) {
 		this.noticias.put(chave, noticia);

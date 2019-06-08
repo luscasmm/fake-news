@@ -43,7 +43,7 @@ public class Processador {
 	// Remove palavras com tamanho menor que o limiar e repetições
 	public static String filtrar(String[] palavras) {
 		
-		TreeSet<String> set = new TreeSet<String>(); // Ávora rubro-negra auxiliar
+		TreeSet<String> set = new TreeSet<String>(); // Ávore rubro-negra auxiliar
 		String str = "";	
 		
 		// Percorre palavra por palavra
