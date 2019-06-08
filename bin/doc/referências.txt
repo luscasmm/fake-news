@@ -19,3 +19,7 @@ https://dl.acm.org/citation.cfm?id=3137600
 
 Hash function  MessageDigest Class
 https://www.geeksforgeeks.org/sha-1-hash-in-java/
+
+How to use Jsoup to scrape webpages (Tutorial)
+https://medium.com/@werdna3232/how-to-use-jsoup-to-scrape-webpages-tutorial-d0a676661b4a
+08/06

@@ -29,7 +29,7 @@ public class Jornal {
 		this.noticias.put(chave, noticia);
 	}
 	
-	// Adiciona uma noticia do mapa com base na chave passada
+	// Remove uma noticia do mapa com base na chave passada
 	public void remover(String chave) {
 		this.noticias.remove(chave);
 	}
@@ -43,4 +43,5 @@ public class Jornal {
 	public HashMap<String, Noticia> noticias() {
 		return this.noticias;
 	}
+	
 }
