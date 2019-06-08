@@ -62,6 +62,7 @@ public class Processador {
 		
 	}
 	
+	// Criptografa a string passada usando o algoritmo SHA-1
 	public static String hash(String str) {
 		try {
 			// Instancia o "hasher" sob algoritmo SHA-1
@@ -76,7 +77,7 @@ public class Processador {
 			// Converte a criptografia para hexadecimal
 			str = bi.toString(16);
 			
-			// Caso a chave não seja de 40 dígitos, adciona 0s as esquerda
+			// Caso a chave não seja de 40 dígitos, adciona 0s a esquerda
 			while (str.length() < 32) { 
                 str = "0" + str; 
             } 

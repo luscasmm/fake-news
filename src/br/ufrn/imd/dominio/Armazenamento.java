@@ -5,6 +5,7 @@ import br.ufrn.imd.modelo.Processador;
 import br.ufrn.imd.modelo.Noticia;
 
 import java.util.ArrayList;
+import java.util.Map.Entry;
 
 /*
  * Esta classe representa a central armazenamento e manejo
@@ -21,6 +22,7 @@ public class Armazenamento {
 	
 	public Armazenamento(String dataset) {
 		
+		this.jornal = new Jornal();
 		this.dataset = dataset;
 		
 	}
@@ -28,12 +30,17 @@ public class Armazenamento {
 	// Carrega as noticias armazenadas no dataset
 	public void carregar() {
 		ArrayList<String[]> conteudo = CSV.ler(dataset, ",");
-		String str;
+		
+		String processado; // armazena o texto processado
+		String chave; // armazena a chave
 		
 		for(String[] linha : conteudo) {
-			str = Processador.processar(linha[1]);
-			System.out.println(Processador.hash(str) + " | " + str);
-			//n.add(new Noticia(linha[0], linha[1], Processador.processar(linha[1]), linha[2], linha[3]));
+			
+			processado = Processador.processar(linha[1]); // Executa o pre-processamento da noticia
+			chave = Processador.hash(processado); // Criptografa para conseguir a chave
+			
+			// Adiciona a nova noticia ao mapa
+			this.jornal.adicionar(chave, new Noticia(linha[0], linha[1], processado, linha[2], linha[3]));
 		}
 		
 	}
@@ -44,16 +51,32 @@ public class Armazenamento {
 		return this.dataset;
 	}
 	
+	public Jornal getJornal() {
+		return this.jornal;
+	}
+	
 	// Setters
 	
 	public void setDataset(String dataset) {
 		this.dataset = dataset;
 	}
 	
-	public static void main(String[] args) {
-		Armazenamento amz = new Armazenamento("data/boatos.csv");
-		
-		amz.carregar();
+	public void setJornal(Jornal jornal) {
+		this.jornal = jornal;
 	}
+	
+//	public static void main(String[] args) {
+//		Armazenamento amz = new Armazenamento("data/boatos.csv");
+//		
+//		amz.carregar();
+//		
+//		
+//		Jornal j = amz.getJornal();
+//		
+//		for(Entry<String, Noticia> tupla : j.noticias().entrySet()) {
+//			System.out.println(tupla.getKey());
+//		    System.out.println(tupla.getValue().getProcessado());
+//		}
+//	}
 
 }

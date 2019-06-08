@@ -34,4 +34,14 @@ public class Jornal {
 	public void remover(String chave) {
 		this.noticias.remove(chave);
 	}
+	
+	// Retorna a notícia sob a chave passada
+	public Noticia noticia(String chave) {
+		return this.noticias.get(chave);
+	}
+	
+	// Retorna as notícias armazenadas
+	public HashMap<String, Noticia> noticias() {
+		return this.noticias;
+	}
 }
