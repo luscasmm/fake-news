@@ -1,13 +1,13 @@
 # Sistema de Detecção de *Fake News* através da Análise de Similaridade entre Conjuntos de Palavras
 
-Este projeto implementa um sistema de detecção de *fake news* executado através da análise de similaridade entre conjuntos de palavras. Implementa, também, os módulos necessários ao funcionamento do programa: leitor de arquivos CSV, *web scrapper*, processamento de strings e algoritmo de similaridade por cosseno.
+Este projeto implementa um sistema de detecção de *fake news* executado através da análise de similaridade entre conjuntos de palavras. Implementa, também, os módulos necessários ao funcionamento do programa: leitor de arquivos CSV, *web scraper*, processamento de strings e algoritmo de similaridade por cosseno.
 
 ## Execução
 
-Primeiramente, é necessário ter o arquivo csv com *fake news* localizado na pasta **data** do pacote de projeto java. Assim, executa-se o programa informando o dataset da seguinte forma:
+Primeiramente, é necessário ter o arquivo csv com *fake news* localizado na pasta **data** do pacote de projeto. Com isso, pode-se executar o programa informando previamente o dataset:
 > $ java -jar fakenews.jar fakenews/data/boatos.csv
 
-É possível informar o dataset durante a execução:
+Ou informar o dataset durante a execução:
 > Insira o caminho do dataset de noticias: <arquivo_csv>
 
 Após definir o arquivo csv, acessa-se o menu principal: 
@@ -33,5 +33,4 @@ Por fim, no menu principal, pode-se escolher a opção **3**: sair do sistema e 
 
 ## Autoria
 
-Desenvolvido por Lucas Miguel Martiniano.
-Github: [@luscasmm](https://github.com/luscasmm)
+Desenvolvido por Lucas Miguel Martiniano [@luscasmm](https://github.com/luscasmm)
