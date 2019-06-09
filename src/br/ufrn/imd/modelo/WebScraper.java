@@ -34,11 +34,16 @@ public class WebScraper {
 			// Pega a primeira ocorrência de um h1 dentro de um main ou de uma section
 			Elements elementos = document.select("main h1, section h1");
 			
-			if(! elementos.isEmpty()) {
-				manchete = elementos.get(0).text();
-			} else {
-				return null;
+			// Verifica se achou algo
+			if(elementos.isEmpty()) {
+				// Se não, pega o h1
+				elementos = document.select("h1");
+				
+				// Se mesmo assim não achou nada, retorna nulo
+				if(elementos.isEmpty()) return null;
 			}
+			
+			manchete = elementos.get(0).text();
 			
 			// Pega a primeira ocorrência de qualquer elemento que possua um atributo cujo nome comece com "date"
 			elementos = document.select("time[datetime]");

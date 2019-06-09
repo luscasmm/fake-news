@@ -8,12 +8,13 @@ import java.util.TreeSet;
 
 /* 
  * Esta classe implementa as rotinas
- * de pre-processamento e de criptografia.
+ * de processamento e de criptografia.
  */
 
 public class Processador {
 	
-	public static int LIMIAR = 3; // Define o limiar para desconsiderar palavras
+	public static int LIMIAR_DESCONSIDERACAO = 3; // Define o limiar para desconsiderar palavras
+	public static double LIMIAR_SIMILARIDADE = 85; // Define o limiar de considerar notícias falsas ou não
 	
 	// Processa o texto original da notícia
 	public static String processar(String str) {
@@ -40,7 +41,7 @@ public class Processador {
 		
 	}
 	
-	// Remove palavras com tamanho menor que o limiar e repetições
+	// Remove palavras com tamanho menor que o limiar de desconsideração e repetições
 	public static String filtrar(String[] palavras) {
 		
 		TreeSet<String> set = new TreeSet<String>(); // Ávore rubro-negra auxiliar
@@ -48,7 +49,7 @@ public class Processador {
 		
 		// Percorre palavra por palavra
 		for(String palavra : palavras) {
-			if(palavra.length() > LIMIAR) { // Filtra pelo Limiar
+			if(palavra.length() > LIMIAR_DESCONSIDERACAO) { // Filtra pelo Limiar de desconsideração
 				set.add(palavra); // Evita repetições e ordena as palavras
 			}	
 		}
@@ -89,9 +90,13 @@ public class Processador {
 		return str;
 	}
 	
+	// Retorna a similaride de string
 	public static double comparar(String s1, String s2) {
+		
+		// Caso as strings estejam vazias, retorna 0
 		if(s1.isEmpty() || s2.isEmpty()) return 0;
 		
+		// Caso as strings sejam iguais, retorna 1
 		if(s1.equals(s2)) return 1;
 		
 		String[] str1 = s1.split(" ");

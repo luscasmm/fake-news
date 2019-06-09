@@ -1,13 +1,10 @@
 package br.ufrn.imd.dominio;
 
 import br.ufrn.imd.modelo.CSV;
-//import br.ufrn.imd.modelo.Processador;
 import br.ufrn.imd.modelo.Noticia;
-//import br.ufrn.imd.modelo.WebScraper;
 
 import java.util.ArrayList;
 import java.util.Map.Entry;
-//import java.util.Map.Entry;
 
 /*
  * Esta classe representa a central de armazenamento e manejo
@@ -39,7 +36,7 @@ public class Armazenamento {
 		
 	}
 	
-	
+	// Salva uma fakenews no sistema
 	public void adicionar(String[] campos) {
 		Entry<String, Noticia> resultado = this.jornal.gerarNoticia(campos);
 		
@@ -47,6 +44,7 @@ public class Armazenamento {
 		
 	}
 	
+	// Salva uma fakenews no sistema
 	public void adicionar(String manchete, String link, String data) {
 		Entry<String, Noticia> resultado = this.jornal.gerarNoticia(manchete, link, data);
 		
@@ -72,23 +70,5 @@ public class Armazenamento {
 	public void setJornal(Jornal jornal) {
 		this.jornal = jornal;
 	}
-	
-//	public static void main(String[] args) {
-//		Armazenamento amz = new Armazenamento("data/boatos.csv");
-//		
-//		amz.carregar();
-//		
-//		
-//		Jornal j = amz.getJornal();
-//		
-//		for(Entry<String, Noticia> tupla : j.noticias().entrySet()) {
-//			System.out.println(tupla.getKey());
-//		    System.out.println(tupla.getValue().getProcessado());
-//		}
-//		
-//		String[] coleta = WebScraper.coletar("https://g1.globo.com/ba/bahia/noticia/2019/06/07/justica-da-bahia-manda-mec-suspender-bloqueio-nas-universidades.ghtml");
-//		
-//		System.out.println(coleta[1]);
-//	}
 
 }

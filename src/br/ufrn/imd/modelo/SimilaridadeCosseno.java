@@ -4,6 +4,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.TreeSet;
 
+
+/*
+ * Essa classe implementa os métodos necessários
+ * ao cálculo de similaridade por cosseno entre
+ * vetores de string
+ */
+
 public class SimilaridadeCosseno {
 	
 	// Recebe duas strings e retorna as palavras que as duas possuem (evita repeições)

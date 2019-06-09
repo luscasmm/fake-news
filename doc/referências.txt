@@ -23,3 +23,7 @@ https://www.geeksforgeeks.org/sha-1-hash-in-java/
 How to use Jsoup to scrape webpages (Tutorial)
 https://medium.com/@werdna3232/how-to-use-jsoup-to-scrape-webpages-tutorial-d0a676661b4a
 08/06
+
+Fuzzy string matching using cosine similarity
+https://blog.nishtahir.com/2015/09/19/fuzzy-string-matching-using-cosine-similarity/
+09/06

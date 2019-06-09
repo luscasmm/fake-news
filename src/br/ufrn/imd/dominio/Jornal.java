@@ -37,12 +37,12 @@ public class Jornal {
 	}
 	
 	// Retorna a notícia sob a chave passada
-	public Noticia noticia(String chave) {
+	public Noticia getNoticia(String chave) {
 		return this.noticias.get(chave);
 	}
 	
 	// Retorna as notícias armazenadas
-	public HashMap<String, Noticia> noticias() {
+	public HashMap<String, Noticia> getNoticias() {
 		return this.noticias;
 	}
 	
