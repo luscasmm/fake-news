@@ -11,7 +11,7 @@ https://www.devmedia.com.br/diferencas-entre-treeset-hashset-e-linkedhashset-em-
 Fake News Detection on Social Media:
 A Data Mining Perspective
 
-http://delivery.acm.org/10.1145/3140000/3137600/p22-shu.pdf?ip=177.20.152.3&id=3137600&acc=ACTIVE%20SERVICE&key=344E943C9DC262BB%2E14D3351198A938A4%2E4D4702B0C3E38B35%2E4D4702B0C3E38B35&__acm__=1559937260_9b650bc315350bd3825931a41337c0f9
+https://www.kdd.org/exploration_files/19-1-Article2.pdf
 
 https://dl.acm.org/citation.cfm?id=3137600
 
@@ -20,7 +20,7 @@ https://dl.acm.org/citation.cfm?id=3137600
 Hash function  MessageDigest Class
 https://www.geeksforgeeks.org/sha-1-hash-in-java/
 
-How to use Jsoup to scrape webpages (Tutorial)
+How to use Jsoup to scrape webpages (Tutoria	l)
 https://medium.com/@werdna3232/how-to-use-jsoup-to-scrape-webpages-tutorial-d0a676661b4a
 08/06
 
