@@ -1,11 +1,12 @@
 package br.ufrn.imd.dominio;
 
 import br.ufrn.imd.modelo.CSV;
-import br.ufrn.imd.modelo.Processador;
+//import br.ufrn.imd.modelo.Processador;
 import br.ufrn.imd.modelo.Noticia;
 //import br.ufrn.imd.modelo.WebScraper;
 
 import java.util.ArrayList;
+import java.util.Map.Entry;
 //import java.util.Map.Entry;
 
 /*
@@ -40,18 +41,16 @@ public class Armazenamento {
 	
 	
 	public void adicionar(String[] campos) {
-		String processado = Processador.processar(campos[1]); // Executa o pre-processamento da noticia
-		String chave = Processador.hash(processado); // Criptografa para conseguir a chave
+		Entry<String, Noticia> resultado = this.jornal.gerarNoticia(campos);
 		
-		this.jornal.adicionar(chave, new Noticia(campos[0], campos[1], processado, campos[2], campos[3]));
+		this.jornal.adicionar(resultado.getKey(), resultado.getValue());
 		
 	}
 	
 	public void adicionar(String manchete, String link, String data) {
-		String processado = Processador.processar(manchete); // Executa o pre-processamento da noticia
-		String chave = Processador.hash(processado); // Criptografa para conseguir a chave
+		Entry<String, Noticia> resultado = this.jornal.gerarNoticia(manchete, link, data);
 		
-		this.jornal.adicionar(chave, new Noticia(null, manchete, processado, link, data));
+		this.jornal.adicionar(resultado.getKey(), resultado.getValue());
 	}
 	
 	// Getters

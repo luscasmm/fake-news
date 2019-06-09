@@ -1,8 +1,10 @@
 package br.ufrn.imd.dominio;
 
 import br.ufrn.imd.modelo.Noticia;
+import br.ufrn.imd.modelo.Processador;
 
 import java.util.HashMap;
+import java.util.Map.Entry;
 
 /*
  * Essa classe representa o conceito de um jornal de fakenews.
@@ -42,6 +44,21 @@ public class Jornal {
 	// Retorna as notícias armazenadas
 	public HashMap<String, Noticia> noticias() {
 		return this.noticias;
+	}
+	
+	// Gera um objeto notícia de acordo com o vetor passado
+	public Entry<String, Noticia> gerarNoticia(String[] campos) {
+		String processado = Processador.processar(campos[1]); // Executa o pre-processamento da noticia
+		String chave = Processador.hash(processado); // Criptografa para conseguir a chave
+		
+		return new java.util.AbstractMap.SimpleEntry<String, Noticia>(chave, new Noticia(campos[0], campos[1], processado, campos[2], campos[3]));		
+	}
+	
+	// Gera um objeto notícia de acordo com os dados passaddos
+	public Entry<String, Noticia> gerarNoticia(String manchete, String link, String data) {
+		String processado = Processador.processar(manchete); // Executa o pre-processamento da noticia
+		String chave = Processador.hash(processado); // Criptografa para conseguir a chave
+		return new java.util.AbstractMap.SimpleEntry<String, Noticia>(chave, new Noticia(null, manchete, processado, link, data));
 	}
 	
 }

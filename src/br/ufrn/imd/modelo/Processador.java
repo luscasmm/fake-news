@@ -8,12 +8,12 @@ import java.util.TreeSet;
 
 /* 
  * Esta classe implementa as rotinas
- * de pre-processamento e de criptografia de uma notícia.
+ * de pre-processamento e de criptografia.
  */
 
 public class Processador {
 	
-	static int LIMIAR = 3; // Define o limiar para desconsiderar palavras
+	public static int LIMIAR = 3; // Define o limiar para desconsiderar palavras
 	
 	// Processa o texto original da notícia
 	public static String processar(String str) {
@@ -88,4 +88,16 @@ public class Processador {
 		 
 		return str;
 	}
+	
+	public static double comparar(String s1, String s2) {
+		if(s1.isEmpty() || s2.isEmpty()) return 0;
+		
+		if(s1.equals(s2)) return 1;
+		
+		String[] str1 = s1.split(" ");
+		String[] str2 = s2.split(" ");
+		
+		return SimilaridadeCosseno.similaridade(str1, str2);
+	}
+	
 }

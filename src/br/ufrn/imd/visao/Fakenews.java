@@ -52,38 +52,53 @@ public class Fakenews {
 		}
 		
 		
-		armazenamento.carregar(); // Carrega os dados do dataset
+		
 		
 		boolean sair = false;
 		
 		do {
+			// Menu principal
+			System.out.print("\n1. Carregar Dataset\n2. Verficar notícia \n3. Sair\n\nOpção: ");
 			
-			
-			System.out.print("\nInforme o link da notícia: ");
-			String url = scanner.next();
-			
-			HashMap<String, String> coleta =  WebScraper.coletar(url);
-			String hash = Processador.hash(coleta.get("manchete"));
-			
-			// Verifica se notícia já consta no sistema
-			if(armazenamento.getJornal().noticia(hash) == null) {
+			switch(scanner.nextInt()) {
+				case 1: System.out.print("\nDeseja mudar limiar de desconsideração de palavras (s/n)? ");
+						if(scanner.next() == "s") {
+							System.out.print("\nInforme limiar de desconsideração de palavras (padrão 3): ");
+							int limiar = scanner.nextInt();
+							if(limiar != 3) Processador.LIMIAR = limiar;
+						}
+						
+						System.out.print("\nCarregando...");
+						armazenamento.carregar(); // Carrega os dados do dataset
+						System.out.print(" Feito\n");
+						break;
 				
-//				armazenamento.adicionar(coleta.get("manchete"), url, coleta.get("data"));
-				
-			} else {
-				
-				System.out.println("Notícia falsa");
-				
-			}
-			
-			System.out.print("\n1. Verficar outra notícia \n2. Sair\n\nOpção: ");
-			
-			if(scanner.nextInt() == 2) sair = true;
-			
-			
+				case 2: System.out.print("\nInforme o link da notícia: ");
+						String url = scanner.next();
+						
+						HashMap<String, String> coleta =  WebScraper.coletar(url);
+						String hash = Processador.hash(coleta.get("manchete"));
+						
+						// Verifica se notícia já consta no sistema
+						if(armazenamento.getJornal().noticia(hash) == null) {
+							
+		//					armazenamento.adicionar(coleta.get("manchete"), url, coleta.get("data"));
+							
+						} else {
+							
+							System.out.println("Notícia falsa");
+							
+						}
+						
+						break;
+						
+				case 3: sair = true;
+						break;
+			}	
 		}while(sair != true);
 		
-	
+		
+		System.out.println("\nFinalizado.");
 		
 		
 //		if(armazenamento.getJornal().noticia())
