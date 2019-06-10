@@ -79,7 +79,7 @@ public class Processador {
 			str = bi.toString(16);
 			
 			// Caso a chave não seja de 40 dígitos, adciona 0s a esquerda
-			while (str.length() < 32) { 
+			while (str.length() < 40) { 
                 str = "0" + str; 
             } 
 			
