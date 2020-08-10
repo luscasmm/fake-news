@@ -1,6 +1,6 @@
 # Sistema de Detecção de *Fake News* através da Análise de Similaridade entre Conjuntos de Palavras
 
-Este projeto implementa um sistema de detecção de *fake news* executado através da análise de similaridade entre conjuntos de palavras. Implementa, também, os módulos necessários ao funcionamento do programa: leitor de arquivos CSV, *web scraper*, processamento de strings e algoritmo de similaridade por cosseno.
+Este projeto foi desenvolvido durante período letivo de Linguagem de Programação II e implementa um sistema de detecção de *fake news* executado através da análise de similaridade entre conjuntos de palavras. Implementando, também, os módulos necessários ao funcionamento do programa: leitor de arquivos CSV, *web scraper*, processamento de strings e algoritmo de similaridade por cosseno.
 
 ## Execução
 
@@ -33,4 +33,4 @@ Por fim, no menu principal, pode-se escolher a opção **3**: sair do sistema e 
 
 ## Autoria
 
-Desenvolvido por Lucas Miguel Martiniano [@luscasmm](https://github.com/luscasmm)
+Desenvolvido por Lucas Miguel Martiniano [@mmartiniano](https://github.com/mmartiniano)
